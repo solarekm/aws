@@ -1,0 +1,38 @@
+# Example variable configuration
+# Copy this file to terraform.tfvars and adjust values
+
+# Basic configuration
+aws_region           = "eu-central-1"
+lambda_function_name = "ec2-auto-shutdown"
+
+# Inactivity thresholds
+cpu_threshold      = 10        # CPU utilization threshold (%)
+network_threshold  = 100000    # Network activity threshold (bytes)
+disk_threshold     = 5000000   # Disk I/O threshold (bytes) - 5 MB
+inactivity_hours   = 3         # Hours of inactivity before shutdown
+metric_period      = 300       # CloudWatch metric period (seconds)
+
+# Lambda configuration
+lambda_timeout     = 900       # Lambda function timeout (seconds)
+lambda_memory_size = 256       # Lambda function memory (MB)
+log_level          = "DEBUG"   # Log level (DEBUG, INFO, WARNING, ERROR)
+
+# Schedule
+schedule_rate = "rate(30 minutes)"  # Check frequency
+
+# Log retention
+log_retention_days = 30        # CloudWatch log retention (days)
+
+# Tags
+default_tags = {
+  Project     = "EC2AutoShutdown"
+  Environment = "Development"
+  ManagedBy   = "Terraform"
+  Owner       = "DevOps"
+}
+
+# Teams notifications - you can add multiple webhooks for different channels
+teams_webhook_urls = [
+  # "https://yourcompany.webhook.office.com/webhookb2/xxx/IncomingWebhook/xxx/xxx",
+  # "https://yourcompany.webhook.office.com/webhookb2/yyy/IncomingWebhook/yyy/yyy"
+]
