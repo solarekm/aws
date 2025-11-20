@@ -71,23 +71,6 @@ The solution includes built-in **default values in `variables.tf`**, allowing de
 
 ## Configuration
 
-### Quick deployment with default values
-
-The solution includes built-in **default values in `variables.tf`**, enabling deployment without additional configuration:
-
-```bash
-terraform init
-terraform apply
-```
-
-**Default thresholds:**
-- CPU: 10%
-- Network: 100 KB
-- Disk I/O: 5 MB
-- Inactivity: 3 hours
-- Schedule: every 30 minutes
-- Log level: DEBUG
-
 ### Customizing configuration
 
 If you want to **customize thresholds** for your needs, copy the example configuration:
@@ -99,6 +82,9 @@ cp terraform.tfvars.example terraform.tfvars
 Then edit `terraform.tfvars`:
 
 ```hcl
+# Example variable configuration
+# Copy this file to terraform.tfvars and adjust values
+
 # Basic configuration
 aws_region           = "eu-central-1"
 lambda_function_name = "ec2-auto-shutdown"
@@ -134,6 +120,7 @@ teams_webhook_urls = [
   # "https://yourcompany.webhook.office.com/webhookb2/xxx/IncomingWebhook/xxx/xxx",
   # "https://yourcompany.webhook.office.com/webhookb2/yyy/IncomingWebhook/yyy/yyy"
 ]
+
 ```
 
 ### EC2 Instance Configuration
