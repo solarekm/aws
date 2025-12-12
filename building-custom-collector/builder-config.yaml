@@ -14,7 +14,7 @@ processors:
 
 exporters:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/otlphttpexporter v0.138.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/debugexporter v0.138.0
+  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.138.0
 connectors:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector v0.138.0
 
