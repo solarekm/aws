@@ -2,7 +2,7 @@ dist:
   module: github.com/open-telemetry/opentelemetry-collector-contrib/cmd/otelcontribcol
   name: otelcol-custom
   description: Custom OpenTelemetry Collector Contrib
-  output_path: ./dist
+  output_path: ./building-custom-collector/dist
   version: ${OTEL_CONTRIB_VERSION}
 
 receivers:
