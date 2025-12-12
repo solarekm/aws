@@ -60,7 +60,7 @@ jobs:
           OTEL_CONTRIB_VERSION: ${{ env.OTEL_CONTRIB_VERSION }}
           OTEL_CONFMAP_VERSION: ${{ env.OTEL_CONFMAP_VERSION }}
         run: |
-          ./ocb --config builder-config.yaml
+          ./ocb --config building-custom-collector/builder-config.yaml
 
       # Verify that the built binary exists and works correctly
       - name: Verify built binary
