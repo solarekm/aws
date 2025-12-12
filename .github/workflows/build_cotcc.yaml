@@ -26,8 +26,6 @@ env:
   VERSION: ${{ github.run_number }}
   BINARY_FILENAME: 'otelcol-custom-linux-amd64.tar.gz'
   BINARY_ARTIFACT_NAME: 'otelcol-custom-binary'
-  OTEL_CONTRIB_VERSION: '0.138.0'
-  OTEL_CONFMAP_VERSION: '1.36.0'
 
 jobs:
   build-binary:
@@ -56,9 +54,6 @@ jobs:
 
       # Build collector using configuration from builder-config.yaml
       - name: Build OpenTelemetry Collector Contrib
-        env:
-          OTEL_CONTRIB_VERSION: ${{ env.OTEL_CONTRIB_VERSION }}
-          OTEL_CONFMAP_VERSION: ${{ env.OTEL_CONFMAP_VERSION }}
         run: |
           ./ocb --config building-custom-collector/builder-config.yaml
 
