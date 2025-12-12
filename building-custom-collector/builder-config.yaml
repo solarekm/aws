@@ -1,0 +1,28 @@
+dist:
+  module: github.com/open-telemetry/opentelemetry-collector-contrib/cmd/otelcontribcol
+  name: otelcol-custom
+  description: Custom OpenTelemetry Collector Contrib
+  output_path: ./dist
+  version: ${OTEL_CONTRIB_VERSION}
+
+receivers:
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/otlpreceiver v${OTEL_CONTRIB_VERSION}
+
+processors:
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v${OTEL_CONTRIB_VERSION}
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v${OTEL_CONTRIB_VERSION}
+
+exporters:
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/otlphttpexporter v${OTEL_CONTRIB_VERSION}
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/debugexporter v${OTEL_CONTRIB_VERSION}
+connectors:
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/connector/routingconnector v${OTEL_CONTRIB_VERSION}
+
+extensions:
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v${OTEL_CONTRIB_VERSION}
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/pprofextension v${OTEL_CONTRIB_VERSION}
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/zpagesextension v${OTEL_CONTRIB_VERSION}
+
+providers:
+  - gomod: go.opentelemetry.io/collector/confmap/provider/fileprovider v${OTEL_CONFMAP_VERSION}
+  - gomod: go.opentelemetry.io/collector/confmap/provider/envprovider v${OTEL_CONFMAP_VERSION}
