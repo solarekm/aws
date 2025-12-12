@@ -66,13 +66,18 @@ jobs:
 
       # Build collector using configuration from builder-config.yaml
       - name: Build Custom OT Collector
+        env:
+          OTEL_CONTRIB_VERSION: ${{ env.OTEL_CONTRIB_VERSION }}
+          OTEL_CONFMAP_VERSION: ${{ env.OTEL_CONFMAP_VERSION }}
         run: |
-          ./ocb --config builder-config.yaml
+          echo "Building with OTEL_CONTRIB_VERSION=${OTEL_CONTRIB_VERSION}"
+          echo "Building with OTEL_CONFMAP_VERSION=${OTEL_CONFMAP_VERSION}"
+          ./ocb --config building-custom-collector/builder-config.yaml
 
       # Verify that the built binary exists and works correctly
       - name: Verify built binary
         run: |
-          cd dist
+          cd building-custom-collector/dist
           
           # Check if binary exists
           if [ ! -f "otelcol-custom" ]; then
@@ -95,14 +100,14 @@ jobs:
       # Create compressed archive for distribution
       - name: Create binary archive
         run: |
-          cd dist
+          cd building-custom-collector/dist
           tar -czf ${{ env.BINARY_FILENAME }} otelcol-custom
 
       - name: Upload binary artifact
         uses: actions/upload-artifact@v5
         with:
           name: ${{ env.BINARY_ARTIFACT_NAME }}-${{ env.VERSION }}
-          path: dist/${{ env.BINARY_FILENAME }}
+          path: building-custom-collector/dist/${{ env.BINARY_FILENAME }}
           retention-days: 1  # Artifacts automatically removed after 1 day
 
   build-push-and-deploy-to-ecs:
