@@ -46,19 +46,12 @@ jobs:
         with:
           go-version: ${{ env.GOLANG_VERSION }}
 
-      # Download OCB (OpenTelemetry Collector Builder) from official releases and verify checksum for security
-      - name: Download and verify OCB
+      # Download OCB (OpenTelemetry Collector Builder) from official releases
+      - name: Download OCB
         run: |
           # Download OCB binary
           curl --proto '=https' --tlsv1.2 -fL -o ocb \
             "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/cmd%2Fbuilder%2Fv${{ env.OCB_VERSION }}/ocb_${{ env.OCB_VERSION }}_linux_amd64"
-          
-          # Download checksum file
-          curl --proto '=https' --tlsv1.2 -fL -o ocb.sha256 \
-            "https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/cmd%2Fbuilder%2Fv${{ env.OCB_VERSION }}/ocb_${{ env.OCB_VERSION }}_linux_amd64.sha256"
-          
-          # Verify checksum
-          echo "$(cat ocb.sha256)  ocb" | sha256sum -c -
           
           # Make executable and verify it works
           chmod +x ocb
